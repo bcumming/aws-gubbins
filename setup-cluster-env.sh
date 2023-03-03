@@ -7,12 +7,12 @@ sudo yum -y install libmount-devel bubblewrap squashfs-tools
 software_path=$HOME/software/
 
 cd $software_path
-git clone git@github.com:eth-cscs/squashfs-mount.git
+git clone https://github.com/eth-cscs/squashfs-mount.git
 cd squashfs-mount/
 sudo make install-suid
 
 cd $software_path
-git clone git@github.com:eth-cscs/squashfs-run.git
+git clone https://github.com/eth-cscs/squashfs-run.git
 cd squashfs-run/
 sudo make install
 

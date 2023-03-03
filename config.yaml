@@ -1,0 +1,32 @@
+Region: eu-west-1
+Image:
+  Os: alinux2
+SharedStorage:
+  - MountDir: /shared
+    Name: default-ebs
+    StorageType: Ebs
+HeadNode:
+  InstanceType: c7g.8xlarge
+  Networking:
+    SubnetId: subnet-0cff1f9998131302d
+    ElasticIp: false
+  Ssh:
+    KeyName: lab-your-key
+  CustomActions:
+    OnNodeConfigured:
+      Script: https://raw.githubusercontent.com/bcumming/aws-gubbins/master/setup-cluster-env.sh
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      CapacityType: ONDEMAND
+      ComputeResources:
+        - Name: compute
+          InstanceType: c7g.16xlarge
+          MinCount: 0
+          MaxCount: 2
+      Networking:
+        SubnetIds:
+          - subnet-0cff1f9998131302d
+        PlacementGroup:
+          Enabled: true
